@@ -1,7 +1,5 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function sendDraftsEmail(
   to: string,
   username: string,
@@ -18,6 +16,7 @@ export async function sendDraftsEmail(
     )
     .join('')
 
+  const resend = new Resend(process.env.RESEND_API_KEY)
   await resend.emails.send({
     from: 'SubKitt <drafts@subkitt.com>',
     to,
