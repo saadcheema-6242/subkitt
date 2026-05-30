@@ -16,7 +16,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "SubKitt — your work turns into inbound",
-  description: "AI agent that drafts your week's posts from what you shipped. For technical founders who'd rather stay in the code than become content creators.",
+  description: "SubKitt reads your GitHub commits and writes 5 tweet drafts — delivered every Monday morning, ready to post. For technical founders who ship but don't post.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

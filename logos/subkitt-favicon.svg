@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <title>SubKitt</title>
+  <rect width="32" height="32" rx="7" fill="#0d0d0d"/>
+  <svg x="4" y="4" width="24" height="24" viewBox="0 0 64 64">
+    <path d="M47 19 C47 13 38 11 30 13 C20 15.5 17 23 27 27.5 C41 33 44 39 37 46.5 C31 53 21 51.5 17 45"
+          fill="none" stroke="#ffffff" stroke-width="8.5" stroke-linecap="round"/>
+  </svg>
+</svg>
