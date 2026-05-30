@@ -64,7 +64,7 @@ function DemoCard() {
       <div className="border-t border-white/[0.07]">
         <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.05]">
           <span className="text-[11px] text-neutral-600">Monday drafts</span>
-          <span className="text-[10px] bg-white/[0.06] text-neutral-500 px-2 py-0.5 rounded-full">5 ready</span>
+          <span className="text-[10px] bg-white/[0.06] text-neutral-500 px-2 py-0.5 rounded-full italic">example</span>
         </div>
         <div className="divide-y divide-white/[0.05]">
           {[
@@ -139,15 +139,10 @@ export default function Home() {
 
           {/* Left: text */}
           <div>
-            <a
-              href="https://x.com/CheemaEdu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 border border-white/[0.1] bg-white/[0.04] rounded-full px-4 py-1.5 mb-10 hover:bg-white/[0.07] transition-colors"
-            >
+            <div className="inline-flex items-center gap-2.5 border border-white/[0.1] bg-white/[0.04] rounded-full px-4 py-1.5 mb-10">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />
               <span className="text-xs text-neutral-400 tracking-wide">Early access · 50% off for first 50</span>
-            </a>
+            </div>
 
             <h1 className="text-[56px] lg:text-[72px] xl:text-[80px] font-bold tracking-[-0.03em] leading-[1.04] mb-7">
               <span className="bg-gradient-to-b from-white via-white to-neutral-600 bg-clip-text text-transparent">
@@ -219,11 +214,12 @@ export default function Home() {
           <div className="flex items-center justify-between mb-12">
             <span className="text-[11px] uppercase tracking-[0.14em] text-neutral-600">How it works</span>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { n: '01', title: 'Connect GitHub', body: 'SubKitt watches your repos and tracks what you actually ship — features, releases, big commits. Not noise.' },
               { n: '02', title: 'Get drafts Monday', body: 'Every Monday morning, 5 tweet drafts land in your inbox. No prompts, no blank page — just your work, packaged.' },
               { n: '03', title: 'Post in 30 seconds', body: 'Pick a draft, tweak it if you want, post it. Your whole week of work, shared in under a minute.' },
+              { n: '04', title: 'See what\'s working', body: 'Every batch tells you which pattern from last week performed best — and explains why this week\'s drafts lean that way. Not a black box.' },
             ].map(({ n, title, body }) => (
               <div key={n} className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-8 hover:bg-white/[0.04] hover:border-white/[0.12] transition-all">
                 <span className="text-[11px] font-mono text-neutral-700 block mb-8">{n}</span>
@@ -256,7 +252,10 @@ export default function Home() {
                   Stop building in silence.
                 </h2>
                 <p className="text-neutral-500 text-[16px]">
-                  Connect GitHub in 30 seconds. First 50 users get 50% off for life.
+                  Connect GitHub in 30 seconds.
+                </p>
+                <p className="text-neutral-600 text-sm mt-2">
+                  $19/month after early access. First 50 users locked in at <span className="text-neutral-400">$9.50/month forever.</span>
                 </p>
               </div>
               <a
