@@ -259,16 +259,13 @@ export default function Home() {
                 <p className="text-neutral-500 text-[16px]">
                   Connect GitHub in 30 seconds.
                 </p>
-                <p className="text-neutral-600 text-sm mt-2">
-                  $19/month after early access. First 50 users locked in at <span className="text-neutral-400">$9.50/month forever.</span>
-                </p>
               </div>
               <a
                 href="/api/auth/github"
                 className="flex items-center gap-2.5 bg-white text-[#080808] font-semibold px-7 py-3.5 rounded-xl text-sm hover:bg-neutral-100 transition-all hover:shadow-[0_0_60px_rgba(255,255,255,0.15)] shrink-0"
               >
                 <GitHubIcon className="w-4 h-4" />
-                Connect GitHub — it&apos;s free
+                Try it free — connect GitHub
               </a>
             </div>
           </div>
