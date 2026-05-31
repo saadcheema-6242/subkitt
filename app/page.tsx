@@ -162,7 +162,7 @@ export default function Home() {
                 className="flex items-center gap-2.5 bg-white text-[#080808] font-semibold px-6 py-3 rounded-xl text-sm hover:bg-neutral-100 transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.12)]"
               >
                 <GitHubIcon className="w-4 h-4" />
-                Connect GitHub — it&apos;s free
+                Try it free — connect GitHub
               </a>
 
               {status === 'success' ? (
@@ -190,7 +190,12 @@ export default function Home() {
             </div>
 
             {status === 'error' && <p className="text-red-400 text-xs mb-3">{errorMsg}</p>}
-            <p className="text-xs text-neutral-700">No card required. No spam.</p>
+            <p className="text-xs text-neutral-700">
+              Free to connect and get your first Monday drafts. $19/month after that.
+            </p>
+            <p className="text-xs text-neutral-700 mt-1.5">
+              Read-only access. We only read commit metadata, never your code.
+            </p>
           </div>
 
           {/* Right: demo card */}
@@ -269,16 +274,37 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Pricing */}
+        <section className="pb-24">
+          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] px-10 py-10">
+            <span className="text-[11px] uppercase tracking-[0.14em] text-neutral-600 block mb-8">Pricing</span>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div>
+                <p className="text-white font-semibold mb-1">Free to start</p>
+                <p className="text-sm text-neutral-500 leading-relaxed">Connect GitHub and get your first Monday drafts free. No card required.</p>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-1">$19 / month</p>
+                <p className="text-sm text-neutral-500 leading-relaxed">After your first week. Cancel anytime.</p>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-1">$9.50 / month — early access</p>
+                <p className="text-sm text-neutral-500 leading-relaxed">First 50 users locked in at 50% off, forever. <span className="text-neutral-400">No price hikes.</span></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Founder note */}
         <section id="founder" className="pb-20 pt-10 border-t border-white/[0.06]">
           <div className="flex gap-4 items-start max-w-lg">
             <div className="w-9 h-9 rounded-full bg-white/[0.06] border border-white/[0.1] shrink-0 flex items-center justify-center text-sm font-semibold text-neutral-400">H</div>
             <div>
               <p className="text-neutral-300 leading-relaxed mb-2">
-                I&apos;m Hassan. Solo, technical, broke student, building in public.
+                I&apos;m Hassan. 16, self-taught, building in public.
               </p>
               <p className="text-neutral-600 text-sm leading-relaxed mb-5">
-                I got tired of shipping code nobody saw. I refused to waste build time on Twitter growth hacks. So I built the tool I needed.
+                I got tired of shipping code nobody saw, and refused to waste build time on growth hacks. So I built the tool I needed.
               </p>
               <div className="flex gap-5">
                 <a href="https://x.com/CheemaEdu" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-600 hover:text-neutral-300 transition-colors">@CheemaEdu on X →</a>
