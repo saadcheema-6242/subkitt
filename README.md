@@ -20,7 +20,24 @@ Day 3 of building in public. Pre-MVP. Currently validating with 20+ founder conv
 ## Journey
 
 - [Day 1 story on Indie Hackers](https://www.indiehackers.com/post/day-1-broke-student-building-an-ai-tool-to-help-technical-founders-build-in-public-5be9e56317)
-- Build log on X: [@CheemaEdu](https://x.com/CheemaEdu)
+
+- Build log on X: 
+  - [@CheemaEdu](https://x.com/CheemaEdu)
+  - [@cheema_muh41643](https://x.com/cheema_muh41643)
+
+- Official SubKitt X:
+  - [@subkitt_ai](https://x.com/subkitt_ai)
+
+- Official SubKitt Instagram:
+  - [@_subkitt](https://www.instagram.com/_subkitt/)
+
+- SubKitt Developers Official X:
+  - [@CheemaEdu](https://x.com/CheemaEdu)
+  - [@cheema_muh41643](https://x.com/cheema_muh41643)
+
+- SubKitt Developers Official Instagram:
+  - [@hassan_cheema_2010_](https://www.instagram.com/hassan_cheema_2010_/)
+  - [@saadcheema.6242](https://www.instagram.com/saadcheema.6242/)
 
 ## License
 

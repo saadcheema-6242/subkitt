@@ -295,17 +295,39 @@ export default function Home() {
         {/* Founder note */}
         <section id="founder" className="pb-20 pt-10 border-t border-white/[0.06]">
           <div className="flex gap-4 items-start max-w-lg">
-            <div className="w-9 h-9 rounded-full bg-white/[0.06] border border-white/[0.1] shrink-0 flex items-center justify-center text-sm font-semibold text-neutral-400">H</div>
+            <div className="w-9 h-9 rounded-full bg-white/[0.06] border border-white/[0.1] shrink-0 flex items-center justify-center text-sm font-semibold text-neutral-400">C</div>
             <div>
               <p className="text-neutral-300 leading-relaxed mb-2">
-                I&apos;m Hassan. 16, self-taught, building in public.
+                We&apos;re Hassan and Muhammad Saad. 16, self-taught, building in public.
               </p>
               <p className="text-neutral-600 text-sm leading-relaxed mb-5">
-                I got tired of shipping code nobody saw, and refused to waste build time on growth hacks. So I built the tool I needed.
+                We got tired of shipping code nobody saw, and refused to waste build time on growth hacks. So we built the tool we needed.
               </p>
-              <div className="flex gap-5">
-                <a href="https://x.com/CheemaEdu" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-600 hover:text-neutral-300 transition-colors">@CheemaEdu on X →</a>
-                <a href="https://github.com/Hassan-Cheema/subkitt" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-600 hover:text-neutral-300 transition-colors">GitHub →</a>
+              <div className="space-y-2 mt-4">
+                <div className="flex gap-x-3 gap-y-1 flex-wrap text-sm text-neutral-500">
+                  <span className="text-neutral-400 font-medium">Hassan:</span>
+                  <a href="https://x.com/CheemaEdu" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition-colors">X →</a>
+                  <span className="text-neutral-700">•</span>
+                  <a href="https://www.instagram.com/hassan_cheema_2010_/" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition-colors">Instagram →</a>
+                  <span className="text-neutral-700">•</span>
+                  <a href="https://github.com/Hassan-Cheema" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition-colors">GitHub →</a>
+                </div>
+                <div className="flex gap-x-3 gap-y-1 flex-wrap text-sm text-neutral-500">
+                  <span className="text-neutral-400 font-medium">Saad:</span>
+                  <a href="https://x.com/cheema_muh41643" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition-colors">X →</a>
+                  <span className="text-neutral-700">•</span>
+                  <a href="https://www.instagram.com/saadcheema.6242/" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition-colors">Instagram →</a>
+                  <span className="text-neutral-700">•</span>
+                  <a href="https://github.com/saadcheema-6242" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition-colors">GitHub →</a>
+                </div>
+                <div className="flex gap-x-3 gap-y-1 flex-wrap text-sm text-neutral-500 pt-2 border-t border-white/[0.04]">
+                  <span className="text-neutral-400 font-medium">SubKitt:</span>
+                  <a href="https://x.com/subkitt_ai" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition-colors">Official X →</a>
+                  <span className="text-neutral-700">•</span>
+                  <a href="https://www.instagram.com/_subkitt/" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition-colors">Official Instagram →</a>
+                  <span className="text-neutral-700">•</span>
+                  <a href="https://github.com/Hassan-Cheema/subkitt" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition-colors">GitHub Repo →</a>
+                </div>
               </div>
             </div>
           </div>
