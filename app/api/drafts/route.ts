@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase-server'
-import { runPipeline } from '@/lib/pipeline'
+import { getDraftsForUser } from '@/lib/pipeline'
 
-export async function POST(req: NextRequest) {
+// Generating drafts fetches commits + calls the LLM; give it room.
+export const maxDuration = 60
+
+export async function GET(req: NextRequest) {
   const userId = req.cookies.get('user_id')?.value
   if (!userId) {
-    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
+    return NextResponse.json({ status: 'error', error: 'Not authenticated' }, { status: 401 })
   }
 
   const supabase = createServerClient()
@@ -16,9 +19,9 @@ export async function POST(req: NextRequest) {
     .single()
 
   if (error || !user) {
-    return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    return NextResponse.json({ status: 'error', error: 'User not found' }, { status: 404 })
   }
 
-  const result = await runPipeline(user)
+  const result = await getDraftsForUser(user)
   return NextResponse.json(result)
 }

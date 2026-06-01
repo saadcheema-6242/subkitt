@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createServerClient } from '@/lib/supabase-server'
-import TestButton from './test-button'
+import DraftStudio from './draft-studio'
 
 export default async function Dashboard() {
   const cookieStore = await cookies()
@@ -18,38 +18,38 @@ export default async function Dashboard() {
   if (!user) redirect('/')
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100">
-      <div className="max-w-lg mx-auto px-6 py-24">
+    <main className="min-h-screen bg-[#080808] text-white">
 
-        <div className="flex items-center gap-2 text-green-400 mb-6">
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-          </svg>
-          <span className="text-sm font-medium">GitHub connected</span>
+      {/* Top bar */}
+      <header className="border-b border-white/[0.07]">
+        <div className="max-w-2xl mx-auto px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="18" height="18">
+              <path d="M47 19 C47 13 38 11 30 13 C20 15.5 17 23 27 27.5 C41 33 44 39 37 46.5 C31 53 21 51.5 17 45" fill="none" stroke="white" strokeWidth="7.5" strokeLinecap="round" />
+            </svg>
+            <span className="font-semibold text-[15px] tracking-tight">SubKitt</span>
+            <span className="text-[10px] bg-white/[0.08] text-neutral-400 px-2 py-0.5 rounded-full ml-1">beta</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs text-neutral-500">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+            @{user.github_username}
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-2xl mx-auto px-6 py-12">
+
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold tracking-tight mb-1.5">
+            Your drafts, @{user.github_username}
+          </h1>
+          <p className="text-neutral-500 text-sm leading-relaxed">
+            Generated live from your last 7 days of commits. Post one now, or get a fresh batch in your inbox every Monday at{' '}
+            <span className="text-neutral-300">{user.github_email}</span>.
+          </p>
         </div>
 
-        <h1 className="text-3xl font-bold mb-2 tracking-tight">
-          You&apos;re in, @{user.github_username}
-        </h1>
-        <p className="text-neutral-400 mb-10 leading-relaxed">
-          Every Monday, SubKitt reads your last 7 days of commits, filters the interesting ones, and emails 5 ready-to-post tweet drafts to{' '}
-          <span className="text-neutral-200">{user.github_email}</span>.
-        </p>
-
-        <div className="bg-neutral-900 rounded-xl p-6 border border-neutral-800 mb-8">
-          <h2 className="font-semibold mb-4 text-sm uppercase tracking-widest text-neutral-500">What happens</h2>
-          <ul className="space-y-3 text-sm text-neutral-400">
-            <li className="flex gap-3"><span className="text-neutral-600 shrink-0">→</span>Reads your GitHub commits from the past 7 days</li>
-            <li className="flex gap-3"><span className="text-neutral-600 shrink-0">→</span>Filters out merges, typos, chores, tiny changes</li>
-            <li className="flex gap-3"><span className="text-neutral-600 shrink-0">→</span>Claude writes 5 drafts in a direct builder&apos;s voice</li>
-            <li className="flex gap-3"><span className="text-neutral-600 shrink-0">→</span>Lands in your inbox every Monday morning</li>
-          </ul>
-        </div>
-
-        <div>
-          <p className="text-sm text-neutral-500 mb-4">Don&apos;t want to wait until Monday?</p>
-          <TestButton />
-        </div>
+        <DraftStudio username={user.github_username} />
 
       </div>
     </main>

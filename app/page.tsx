@@ -117,7 +117,10 @@ export default function Home() {
       {/* Navbar */}
       <header className="fixed top-0 inset-x-0 z-50 border-b border-white/[0.07] bg-[#080808]/75 backdrop-blur-2xl">
         <div className="max-w-7xl mx-auto px-8 h-14 flex items-center justify-between">
-          <SubKittLogo />
+          <div className="flex items-center gap-2">
+            <SubKittLogo />
+            <span className="text-[10px] bg-white/[0.08] text-neutral-400 px-2 py-0.5 rounded-full">beta</span>
+          </div>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#how" className="text-sm text-neutral-500 hover:text-white transition-colors">How it works</a>
             <a href="#founder" className="text-sm text-neutral-500 hover:text-white transition-colors">About</a>
@@ -141,7 +144,7 @@ export default function Home() {
           <div>
             <div className="inline-flex items-center gap-2.5 border border-white/[0.1] bg-white/[0.04] rounded-full px-4 py-1.5 mb-10">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />
-              <span className="text-xs text-neutral-400 tracking-wide">Early access · 50% off for first 50</span>
+              <span className="text-xs text-neutral-400 tracking-wide">Now in beta · free to start</span>
             </div>
 
             <h1 className="text-[56px] lg:text-[72px] xl:text-[80px] font-bold tracking-[-0.03em] leading-[1.04] mb-7">
@@ -152,8 +155,11 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="text-[17px] text-neutral-500 max-w-md mb-10 leading-relaxed">
-              SubKitt reads your commits and writes 5 ready-to-post tweet drafts — delivered to your inbox every Monday morning.
+            <p className="text-[17px] text-neutral-400 max-w-md mb-3 leading-relaxed">
+              Connect GitHub and SubKitt turns your real commits into <span className="text-white">5 ready-to-post tweets — in 60 seconds.</span>
+            </p>
+            <p className="text-[15px] text-neutral-600 max-w-md mb-10 leading-relaxed">
+              Then a fresh batch lands in your inbox every Monday. You stay in the code; your audience still grows.
             </p>
 
             <div className="flex flex-wrap items-center gap-3 mb-5">
@@ -190,8 +196,8 @@ export default function Home() {
             </div>
 
             {status === 'error' && <p className="text-red-400 text-xs mb-3">{errorMsg}</p>}
-            <p className="text-xs text-neutral-700">
-              Free to connect and get your first Monday drafts. $19/month after that.
+            <p className="text-xs text-neutral-600">
+              See 5 drafts from your real commits in 60 seconds. Free during beta.
             </p>
             <p className="text-xs text-neutral-700 mt-1.5">
               Read-only access. We only read commit metadata, never your code.
@@ -221,10 +227,10 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { n: '01', title: 'Connect GitHub', body: 'SubKitt watches your repos and tracks what you actually ship — features, releases, big commits. Not noise.' },
-              { n: '02', title: 'Get drafts Monday', body: 'Every Monday morning, 5 tweet drafts land in your inbox. No prompts, no blank page — just your work, packaged.' },
-              { n: '03', title: 'Post in 30 seconds', body: 'Pick a draft, tweak it if you want, post it. Your whole week of work, shared in under a minute.' },
-              { n: '04', title: 'See what\'s working', body: 'Every batch tells you which pattern from last week performed best — and explains why this week\'s drafts lean that way. Not a black box.' },
+              { n: '01', title: 'Connect GitHub', body: 'One click, read-only. SubKitt tracks what you actually ship — features, releases, big commits. Not noise.' },
+              { n: '02', title: 'See drafts instantly', body: 'In 60 seconds, 5 tweet drafts from your real last-7-days commits appear on screen. No prompts, no blank page.' },
+              { n: '03', title: 'Post in one click', body: 'Edit if you want, then hit Post on X. Or copy it. Your whole week of work, shared in under a minute.' },
+              { n: '04', title: 'Every Monday, on autopilot', body: 'A fresh batch lands in your inbox each Monday — so building in public becomes a habit you never have to think about.' },
             ].map(({ n, title, body }) => (
               <div key={n} className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-8 hover:bg-white/[0.04] hover:border-white/[0.12] transition-all">
                 <span className="text-[11px] font-mono text-neutral-700 block mb-8">{n}</span>
