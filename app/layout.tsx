@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SubKitt — your work turns into inbound",
-  description: "SubKitt reads your GitHub commits and writes 5 tweet drafts — delivered every Monday morning, ready to post. For technical founders who ship but don't post.",
+  title: "SubKitt — turn your commits into tweets",
+  description: "Connect GitHub and SubKitt turns your real commits into 5 ready-to-post tweets in 60 seconds — then a fresh batch every Monday. For technical founders who ship but don't post.",
   icons: {
     icon: "/favicon.svg",
   },
