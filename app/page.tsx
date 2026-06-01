@@ -89,6 +89,55 @@ export default function Home() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
+  // Autopilot Video Demo Simulator State
+  const [demoActive, setDemoActive] = useState(false);
+  const [demoStep, setDemoStep] = useState(0);
+  const [cursorPos, setCursorPos] = useState({ x: 50, y: 50 });
+  const [copiedDraft, setCopiedDraft] = useState(false);
+
+  const startDemo = () => {
+    setDemoActive(true);
+    setDemoStep(1);
+    setCursorPos({ x: 80, y: 80 });
+    setCopiedDraft(false);
+
+    // Timeline:
+    // 1. Move cursor to "Connect GitHub" (top-right inside simulator)
+    setTimeout(() => {
+      setCursorPos({ x: 91, y: 11 });
+    }, 500);
+
+    // 2. Click button (redirect to GitHub authorization loader)
+    setTimeout(() => {
+      setDemoStep(2);
+    }, 2500);
+
+    // 3. Transition to Dashboard and start commit scanning
+    setTimeout(() => {
+      setDemoStep(3);
+    }, 4500);
+
+    // 4. Reveal mock commits and drafts
+    setTimeout(() => {
+      setDemoStep(4);
+    }, 9000);
+
+    // 5. Move cursor to "Copy" button of the first card
+    setTimeout(() => {
+      setCursorPos({ x: 38, y: 52 });
+    }, 11000);
+
+    // 6. Click Copy (show checkmark success)
+    setTimeout(() => {
+      setCopiedDraft(true);
+    }, 12500);
+
+    // 7. Complete: Enable replay controls
+    setTimeout(() => {
+      setDemoStep(5);
+    }, 14000);
+  };
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
@@ -119,7 +168,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-8 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <SubKittLogo />
-            <span className="text-[10px] bg-white/[0.08] text-neutral-400 px-2 py-0.5 rounded-full">beta</span>
+            <span 
+              onClick={startDemo} 
+              title="Click for Autopilot Recording Demo"
+              className="text-[10px] bg-white/[0.08] text-neutral-400 px-2 py-0.5 rounded-full cursor-pointer hover:bg-white/[0.15] transition-colors select-none"
+            >
+              beta
+            </span>
           </div>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#how" className="text-sm text-neutral-500 hover:text-white transition-colors">How it works</a>
@@ -340,6 +395,184 @@ export default function Home() {
         </section>
 
       </div>
+
+      {/* Autopilot Demo Simulator Overlay */}
+      {demoActive && (
+        <div className="fixed inset-0 z-50 bg-[#080808]/96 flex flex-col items-center justify-center p-4 backdrop-blur-md">
+          {/* Simulated Browser Frame */}
+          <div className="w-full max-w-4xl h-[650px] bg-[#0c0c0c] border border-white/[0.08] rounded-2xl overflow-hidden flex flex-col relative shadow-[0_0_80px_rgba(0,0,0,0.8)] select-none">
+            
+            {/* Window controls */}
+            <div className="h-11 bg-[#121212] border-b border-white/[0.05] flex items-center px-4 justify-between shrink-0">
+              <div className="flex gap-2">
+                <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
+              </div>
+              <div className="bg-[#1c1c1c] text-[11px] text-neutral-500 px-10 py-1 rounded-md border border-white/[0.04] font-mono">
+                subkitt.com{demoStep >= 3 ? '/dashboard' : ''}
+              </div>
+              <div className="w-14" />
+            </div>
+
+            {/* Simulated Mouse Cursor */}
+            <div 
+              className="absolute pointer-events-none z-50 transition-all duration-[1500ms] ease-out flex flex-col items-start"
+              style={{ 
+                left: `${cursorPos.x}%`, 
+                top: `${cursorPos.y}%`,
+                transitionProperty: 'left, top'
+              }}
+            >
+              <svg className="w-5 h-5 text-white filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4.5 3v15.3l4.3-4.3 3.6 7.4 2.8-1.4-3.6-7.3 5.4-.3z" stroke="black" strokeWidth="1.5" />
+              </svg>
+            </div>
+
+            {/* Step 1: Landing Page inside Browser */}
+            {demoStep <= 1 && (
+              <div className="flex-1 overflow-y-auto p-8 relative">
+                {/* Navbar inside Browser */}
+                <div className="flex justify-between items-center mb-12">
+                  <div className="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
+                      <path d="M47 19 C47 13 38 11 30 13 C20 15.5 17 23 27 27.5 C41 33 44 39 37 46.5 C31 53 21 51.5 17 45" fill="none" stroke="white" strokeWidth="7.5" strokeLinecap="round" />
+                    </svg>
+                    <span className="font-semibold text-sm">SubKitt</span>
+                  </div>
+                  <div className="bg-white text-[#080808] text-xs font-semibold px-4 py-2 rounded-lg border border-white/[0.1]">
+                    Connect GitHub
+                  </div>
+                </div>
+
+                {/* Hero Inside Browser */}
+                <div className="max-w-md mt-10">
+                  <div className="inline-flex items-center gap-2 border border-white/[0.1] bg-white/[0.04] rounded-full px-3 py-1 mb-6">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    <span className="text-[10px] text-neutral-400">Now in beta · free to start</span>
+                  </div>
+                  <h1 className="text-4xl font-bold tracking-tight mb-4 leading-tight">
+                    You ship.<br />Your work turns<br />into inbound.
+                  </h1>
+                  <p className="text-sm text-neutral-400 leading-relaxed mb-6">
+                    Connect GitHub and SubKitt turns your real commits into 5 ready-to-post tweets — in 60 seconds.
+                  </p>
+                  <div className="inline-flex items-center gap-2 bg-white text-[#080808] font-semibold px-5 py-2.5 rounded-xl text-xs">
+                    Connect GitHub →
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Step 2: GitHub Simulated Auth Loader */}
+            {demoStep === 2 && (
+              <div className="flex-1 flex flex-col items-center justify-center bg-[#090909]">
+                <div className="w-16 h-16 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center mb-6 animate-pulse">
+                  <svg className="w-8 h-8 text-neutral-400" viewBox="0 0 24 24" fill="currentColor">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                  </svg>
+                </div>
+                <p className="text-sm font-semibold text-neutral-200 animate-pulse">Authorizing SubKitt with GitHub...</p>
+                <p className="text-xs text-neutral-500 mt-2">Checking read-only metadata permissions</p>
+              </div>
+            )}
+
+            {/* Step 3 & 4: Simulated Dashboard */}
+            {demoStep >= 3 && (
+              <div className="flex-1 flex flex-col overflow-hidden bg-[#080808]">
+                {/* Dashboard Header */}
+                <header className="border-b border-white/[0.05] h-12 flex items-center justify-between px-6 shrink-0">
+                  <div className="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="16" height="16">
+                      <path d="M47 19 C47 13 38 11 30 13 C20 15.5 17 23 27 27.5 C41 33 44 39 37 46.5 C31 53 21 51.5 17 45" fill="none" stroke="white" strokeWidth="7.5" strokeLinecap="round" />
+                    </svg>
+                    <span className="font-semibold text-xs">SubKitt</span>
+                    <span className="text-[9px] bg-white/[0.06] text-neutral-400 px-1.5 py-0.2 rounded-full">beta</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[10px] text-neutral-500">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                    @saadcheema-6242
+                  </div>
+                </header>
+
+                <div className="flex-1 overflow-y-auto p-6 max-w-xl mx-auto w-full">
+                  <div className="mb-6">
+                    <h2 className="text-base font-bold text-white mb-1">Your drafts, @saadcheema-6242</h2>
+                    <p className="text-xs text-neutral-500">Generated live from your last 7 days of commits.</p>
+                  </div>
+
+                  {/* Loading screen for Dashboard */}
+                  {demoStep === 3 && (
+                    <div className="rounded-xl border border-white/[0.06] bg-white/[0.01] p-12 text-center mt-4">
+                      <div className="flex justify-center gap-1 mb-4">
+                        {[0, 1, 2].map(i => (
+                          <span key={i} className="w-1.5 h-1.5 rounded-full bg-white/60 animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
+                        ))}
+                      </div>
+                      <p className="text-xs font-semibold text-neutral-300">Writing your drafts...</p>
+                      <p className="text-[10px] text-neutral-500 mt-1">Reading 14 commits across 2 repositories</p>
+                    </div>
+                  )}
+
+                  {/* Loaded State */}
+                  {demoStep >= 4 && (
+                    <div className="space-y-4">
+                      {/* Commits box */}
+                      <div className="rounded-xl border border-white/[0.06] bg-white/[0.01] p-4">
+                        <p className="text-[9px] uppercase tracking-wider text-neutral-600 mb-2 font-mono">Written from commits this week</p>
+                        <div className="space-y-1 text-[10px] font-mono text-green-400/80">
+                          <div>[subkitt] Redesigned premium product landing page (+420/-12 lines)</div>
+                          <div>[subkitt] Configured Gemini 3.5 Flash generator engine (+50/-0 lines)</div>
+                        </div>
+                      </div>
+
+                      {/* Social cards */}
+                      <div className="space-y-2.5">
+                        {[
+                          "Redesigned the entire landing page for SubKitt. Hardcoded obsidian theme, clean selection highlights, and styled scrollbars. Feels incredibly premium.",
+                          "Switched SubKitt generation engine to Gemini 3.5 Flash. Draft generation is now under 3 seconds with absolute precision. Commits -> posts on autopilot.",
+                        ].map((draft, idx) => (
+                          <div key={idx} className="rounded-xl border border-white/[0.06] bg-white/[0.01] p-4">
+                            <div className="flex justify-between items-center text-[9px] text-neutral-600 mb-2">
+                              <span>{idx + 1} / 2</span>
+                              <span>{draft.length} / 280</span>
+                            </div>
+                            <p className="text-xs text-neutral-200 leading-relaxed mb-3">{draft}</p>
+                            <div className="flex gap-2">
+                              <span className="bg-white text-[#080808] text-[10px] font-bold px-3 py-1.5 rounded-md">Post on X</span>
+                              <span className="text-[10px] text-neutral-400 border border-white/[0.08] px-3 py-1.5 rounded-md font-medium">
+                                {idx === 0 && copiedDraft ? '✓ Copied' : 'Copy'}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Controls for Recording */}
+            <div className="absolute bottom-4 right-4 z-50 flex gap-2">
+              <button 
+                onClick={() => setDemoActive(false)}
+                className="bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-semibold px-4 py-2 rounded-lg border border-white/[0.08] transition-colors shadow-lg"
+              >
+                Close Simulator
+              </button>
+              {demoStep === 5 && (
+                <button 
+                  onClick={startDemo}
+                  className="bg-white text-black text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg"
+                >
+                  Replay Demo
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
